@@ -13,4 +13,14 @@ Allows you to use natives and detours functions
 ### Installation
 
 * Download latest [release](https://github.com/dronelektron/dod-hooks/releases)
-* Extract `plugins` folder to `addons/sourcemod` folder of your server
+* Extract `gamedata` and `plugins` folders to `addons/sourcemod` folder of your server
+
+### API
+
+Called when setting the winning `team`
+
+Use `Plugin_Continue` for normal execution and `Plugin_Stop` to stop execution
+
+```sourcepawn
+forward Action DodHooks_OnSetWinningTeam(int team);
+```

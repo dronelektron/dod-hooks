@@ -1,0 +1,32 @@
+"Games"
+{
+    "dod"
+    {
+        "Signatures"
+        {
+            "CDODGameRules::SetWinningTeam"
+            {
+                "library"   "server"
+                "windows"   "\x55\x8B\xEC\x81\xEC\xA0\x00\x00\x00\x53"
+                "linux"     "@_ZN13CDODGameRules14SetWinningTeamEi"
+            }
+        }
+        "Functions"
+        {
+            "SetWinningTeam"
+            {
+                "signature" "CDODGameRules::SetWinningTeam"
+                "callconv"  "thiscall"
+                "return"    "void"
+                "this"      "ignore"
+                "arguments"
+                {
+                    "team"
+                    {
+                        "type"  "int"
+                    }
+                }
+            }
+        }
+    }
+}

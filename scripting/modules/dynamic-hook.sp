@@ -7,18 +7,20 @@ void DynamicHook_Create() {
         SetFailState("Unable to load the '%s' file", GAME_CONFIG);
     }
 
-    CreateSetWinningTeam(gameConfig);
-    EnableSetWinningTeam();
+    g_setWinningTeam = CreateHook(gameConfig, FUNCTION_SET_WINNING_TEAM);
 
-    delete gameConfig;
+    EnableSetWinningTeam();
+    CloseHandle(gameConfig);
 }
 
-static void CreateSetWinningTeam(Handle gameConfig) {
-    g_setWinningTeam = DHookCreateFromConf(gameConfig, FUNCTION_SET_WINNING_TEAM);
+static Handle CreateHook(Handle gameConfig, const char[] functionName) {
+    Handle setup = DHookCreateFromConf(gameConfig, functionName);
 
-    if (g_setWinningTeam == null) {
-        SetFailState("Unable to hook the '%s' function", FUNCTION_SET_WINNING_TEAM);
+    if (setup == null) {
+        SetFailState("Unable to hook the '%s' function", functionName);
     }
+
+    return setup;
 }
 
 static void EnableSetWinningTeam() {

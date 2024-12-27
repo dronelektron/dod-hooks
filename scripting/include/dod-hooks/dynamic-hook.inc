@@ -4,6 +4,5 @@
 #define _dod_hooks_dynamic_hook_included
 
 #define GAME_CONFIG "dod-hooks.games"
-#define POST_NO false
 
-#define FUNCTION_SET_WINNING_TEAM "SetWinningTeam"
+#define DOD_GAME_RULES_SET_WINNING_TEAM "CDODGameRules::SetWinningTeam"

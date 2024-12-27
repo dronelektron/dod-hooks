@@ -11,22 +11,5 @@
                 "linux"     "@_ZN13CDODGameRules14SetWinningTeamEi"
             }
         }
-        "Functions"
-        {
-            "SetWinningTeam"
-            {
-                "signature" "CDODGameRules::SetWinningTeam"
-                "callconv"  "thiscall"
-                "return"    "void"
-                "this"      "ignore"
-                "arguments"
-                {
-                    "team"
-                    {
-                        "type"  "int"
-                    }
-                }
-            }
-        }
     }
 }

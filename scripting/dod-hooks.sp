@@ -18,3 +18,11 @@ public void OnPluginStart() {
     DynamicHook_Create();
     Forward_Create();
 }
+
+public void OnMapStart() {
+    DynamicHook_EnableSetWinningTeam();
+}
+
+public void OnMapEnd() {
+    DynamicHook_DisableSetWinningTeam();
+}

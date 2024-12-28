@@ -27,7 +27,17 @@ void DynamicHook_DisableSetWinningTeam() {
 
 static MRESReturn OnSetWinningTeam(DHookParam params) {
     int team = DHookGetParam(params, 1);
-    Action result = Forward_OnSetWinningTeam(team);
 
-    return result > Plugin_Continue ? MRES_Supercede : MRES_Ignored;
+    switch (Forward_OnSetWinningTeam(team)) {
+        case Plugin_Changed: {
+            DHookSetParam(params, 1, team);
+
+            return MRES_ChangedHandled;
+        }
+
+        case Plugin_Handled: return MRES_Handled;
+        case Plugin_Stop: return MRES_Supercede;
+    }
+
+    return MRES_Ignored;
 }

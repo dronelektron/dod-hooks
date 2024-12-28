@@ -3,4 +3,4 @@
 #endif
 #define _dod_hooks_api_included
 
-forward Action DodHooks_OnSetWinningTeam(int team);
+forward Action DodHooks_OnSetWinningTeam(int& team);

@@ -1,11 +1,7 @@
 static Handle g_setWinningTeam;
 
-void SdkCall_Create() {
-    GameData gameData = new GameData(GAME_CONFIG);
-
+void SdkCall_Create(GameData gameData) {
     g_setWinningTeam = CreateSetWinningTeam(gameData);
-
-    CloseHandle(gameData);
 }
 
 void SdkCall_SetWinningTeam(int team) {

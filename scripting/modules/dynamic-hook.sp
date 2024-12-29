@@ -1,11 +1,7 @@
 static DynamicDetour g_setWinningTeam;
 
-void DynamicHook_Create() {
-    GameData gameData = new GameData(GAME_CONFIG);
-
+void DynamicHook_Create(GameData gameData) {
     g_setWinningTeam = CreateSetWinningTeam(gameData);
-
-    CloseHandle(gameData);
 }
 
 static DynamicDetour CreateSetWinningTeam(GameData gameData) {

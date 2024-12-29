@@ -2,10 +2,11 @@
 #include <dhooks>
 
 #include "dod-hooks/api/native"
-#include "dod-hooks/dynamic-hook"
+#include "dod-hooks/game-data"
 
 #include "modules/dynamic-hook.sp"
 #include "modules/forward.sp"
+#include "modules/game-data.sp"
 #include "modules/native.sp"
 #include "modules/sdk-call.sp"
 
@@ -24,9 +25,8 @@ public APLRes AskPluginLoad2(Handle plugin, bool late, char[] error, int errorMa
 }
 
 public void OnPluginStart() {
-    DynamicHook_Create();
     Forward_Create();
-    SdkCall_Create();
+    GameData_Load();
 }
 
 public void OnMapStart() {

@@ -1,7 +1,7 @@
-#if defined _dod_hooks_dynamic_hook_included
+#if defined _dod_hooks_game_data_included
  #endinput
 #endif
-#define _dod_hooks_dynamic_hook_included
+#define _dod_hooks_game_data_included
 
 #define GAME_CONFIG "dod-hooks.games"
 

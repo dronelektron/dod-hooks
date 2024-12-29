@@ -1,10 +1,13 @@
 #include <sourcemod>
 #include <dhooks>
 
+#include "dod-hooks/api/native"
 #include "dod-hooks/dynamic-hook"
 
 #include "modules/dynamic-hook.sp"
 #include "modules/forward.sp"
+#include "modules/native.sp"
+#include "modules/sdk-call.sp"
 
 public Plugin myinfo = {
     name = "DOD hooks",
@@ -14,9 +17,16 @@ public Plugin myinfo = {
     url = "https://github.com/dronelektron/dod-hooks"
 };
 
+public APLRes AskPluginLoad2(Handle plugin, bool late, char[] error, int errorMax) {
+    Native_Create();
+
+    return APLRes_Success;
+}
+
 public void OnPluginStart() {
     DynamicHook_Create();
     Forward_Create();
+    SdkCall_Create();
 }
 
 public void OnMapStart() {

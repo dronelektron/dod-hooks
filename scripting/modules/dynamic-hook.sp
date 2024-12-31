@@ -7,7 +7,7 @@ void DynamicHook_Create(GameData gameData) {
 static DynamicDetour CreateSetWinningTeam(GameData gameData) {
     DynamicDetour setup = DHookCreateDetour(Address_Null, CallConv_THISCALL, ReturnType_Void, ThisPointer_Ignore);
 
-    setup.SetFromConf(gameData, SDKConf_Signature, DOD_GAME_RULES_SET_WINNING_TEAM);
+    setup.SetFromConf(gameData, SDKConf_Signature, GAME_RULES_SET_WINNING_TEAM);
     setup.AddParam(HookParamType_Int); // team
 
     return setup;

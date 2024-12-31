@@ -10,7 +10,7 @@ void SdkCall_SetWinningTeam(int team) {
 
 static Handle CreateSetWinningTeam(GameData gameData) {
     StartPrepSDKCall(SDKCall_GameRules);
-    PrepSDKCall_SetFromConf(gameData, SDKConf_Signature, DOD_GAME_RULES_SET_WINNING_TEAM);
+    PrepSDKCall_SetFromConf(gameData, SDKConf_Signature, GAME_RULES_SET_WINNING_TEAM);
     PrepSDKCall_AddParameter(SDKType_PlainOldData, SDKPass_Plain); // team
 
     return EndPrepSDKCall();

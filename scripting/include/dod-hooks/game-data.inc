@@ -5,4 +5,4 @@
 
 #define GAME_CONFIG "dod-hooks.games"
 
-#define DOD_GAME_RULES_SET_WINNING_TEAM "CDODGameRules::SetWinningTeam"
+#define GAME_RULES_SET_WINNING_TEAM "CDODGameRules::SetWinningTeam"

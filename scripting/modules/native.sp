@@ -1,11 +1,11 @@
-void Native_Create() {
-    CreateNative("DodHooks_SetWinningTeam", Native_SetWinningTeam);
+void Native_GameRules_SetWinningTeam_Create() {
+    CreateNative("GameRules_SetWinningTeam", SetWinningTeam);
 }
 
-any Native_SetWinningTeam(Handle plugin, int numParams) {
+static any SetWinningTeam(Handle plugin, int numParams) {
     int team = GetNativeCell(1);
 
-    SdkCall_SetWinningTeam(team);
+    SdkCall_GameRules_SetWinningTeam(team);
 
     return VOID;
 }

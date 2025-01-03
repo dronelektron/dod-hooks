@@ -19,20 +19,20 @@ public Plugin myinfo = {
 };
 
 public APLRes AskPluginLoad2(Handle plugin, bool late, char[] error, int errorMax) {
-    Native_Create();
+    Native_GameRules_SetWinningTeam_Create();
 
     return APLRes_Success;
 }
 
 public void OnPluginStart() {
-    Forward_Create();
+    Forward_GameRules_OnSetWinningTeam_Create();
     GameData_Load();
 }
 
 public void OnMapStart() {
-    Detour_EnableSetWinningTeam();
+    Detour_GameRules_SetWinningTeam_Enable();
 }
 
 public void OnMapEnd() {
-    Detour_DisableSetWinningTeam();
+    Detour_GameRules_SetWinningTeam_Disable();
 }

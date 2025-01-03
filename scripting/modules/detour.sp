@@ -1,30 +1,23 @@
 static DynamicDetour g_setWinningTeam;
 
-void Detour_Create(GameData gameData) {
-    g_setWinningTeam = CreateSetWinningTeam(gameData);
+void Detour_GameRules_SetWinningTeam_Create(GameData gameData) {
+    g_setWinningTeam = DHookCreateDetour(Address_Null, CallConv_THISCALL, ReturnType_Void, ThisPointer_Ignore);
+    g_setWinningTeam.SetFromConf(gameData, SDKConf_Signature, GAME_RULES_SET_WINNING_TEAM);
+    g_setWinningTeam.AddParam(HookParamType_Int); // team
 }
 
-static DynamicDetour CreateSetWinningTeam(GameData gameData) {
-    DynamicDetour setup = DHookCreateDetour(Address_Null, CallConv_THISCALL, ReturnType_Void, ThisPointer_Ignore);
-
-    setup.SetFromConf(gameData, SDKConf_Signature, GAME_RULES_SET_WINNING_TEAM);
-    setup.AddParam(HookParamType_Int); // team
-
-    return setup;
+void Detour_GameRules_SetWinningTeam_Enable() {
+    g_setWinningTeam.Enable(Hook_Pre, SetWinningTeam);
 }
 
-void Detour_EnableSetWinningTeam() {
-    g_setWinningTeam.Enable(Hook_Pre, OnSetWinningTeam);
+void Detour_GameRules_SetWinningTeam_Disable() {
+    g_setWinningTeam.Disable(Hook_Pre, SetWinningTeam);
 }
 
-void Detour_DisableSetWinningTeam() {
-    g_setWinningTeam.Disable(Hook_Pre, OnSetWinningTeam);
-}
-
-static MRESReturn OnSetWinningTeam(DHookParam params) {
+static MRESReturn SetWinningTeam(DHookParam params) {
     int team = DHookGetParam(params, 1);
 
-    switch (Forward_OnSetWinningTeam(team)) {
+    switch (Forward_GameRules_OnSetWinningTeam(team)) {
         case Plugin_Changed: {
             DHookSetParam(params, 1, team);
 

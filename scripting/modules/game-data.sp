@@ -5,7 +5,7 @@ void GameData_Load() {
         SetFailState("Unable to open the '%s' game data", GAME_CONFIG);
     }
 
-    Detour_Create(gameData);
-    SdkCall_Create(gameData);
+    Detour_GameRules_SetWinningTeam_Create(gameData);
+    SdkCall_GameRules_SetWinningTeam_Create(gameData);
     CloseHandle(gameData);
 }

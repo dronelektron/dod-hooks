@@ -27,5 +27,11 @@ Default behavior of the forwards:
 Called before setting the winning `team`
 
 ```sourcepawn
-forward Action DodHooks_OnSetWinningTeam(int& team);
+forward Action GameRules_OnSetWinningTeam(int& team);
+```
+
+Set the winning `team`
+
+```sourcepawn
+native void GameRules_SetWinningTeam(int team);
 ```

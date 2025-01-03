@@ -3,6 +3,6 @@
 #endif
 #define _dod_hooks_api_included
 
-forward Action DodHooks_OnSetWinningTeam(int& team);
+forward Action GameRules_OnSetWinningTeam(int& team);
 
-native void DodHooks_SetWinningTeam(int team);
+native void GameRules_SetWinningTeam(int team);

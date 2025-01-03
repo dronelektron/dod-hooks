@@ -1,17 +1,10 @@
-static DynamicDetour g_setWinningTeam;
-
 void Detour_GameRules_SetWinningTeam_Create(GameData gameData) {
-    g_setWinningTeam = DHookCreateDetour(Address_Null, CallConv_THISCALL, ReturnType_Void, ThisPointer_Ignore);
-    g_setWinningTeam.SetFromConf(gameData, SDKConf_Signature, GAME_RULES_SET_WINNING_TEAM);
-    g_setWinningTeam.AddParam(HookParamType_Int); // team
-}
+    DynamicDetour detour = DHookCreateDetour(Address_Null, CallConv_THISCALL, ReturnType_Void, ThisPointer_Ignore);
 
-void Detour_GameRules_SetWinningTeam_Enable() {
-    g_setWinningTeam.Enable(Hook_Pre, SetWinningTeam);
-}
+    detour.SetFromConf(gameData, SDKConf_Signature, GAME_RULES_SET_WINNING_TEAM);
+    detour.AddParam(HookParamType_Int); // team
 
-void Detour_GameRules_SetWinningTeam_Disable() {
-    g_setWinningTeam.Disable(Hook_Pre, SetWinningTeam);
+    Watcher_SetDetour(Index_GameRules_SetWinningTeam, detour, SetWinningTeam);
 }
 
 static MRESReturn SetWinningTeam(DHookParam params) {

@@ -3,12 +3,14 @@
 
 #include "dod-hooks/api/native"
 #include "dod-hooks/game-data"
+#include "dod-hooks/watcher"
 
 #include "modules/detour.sp"
 #include "modules/forward.sp"
 #include "modules/game-data.sp"
 #include "modules/native.sp"
 #include "modules/sdk-call.sp"
+#include "modules/watcher.sp"
 
 public Plugin myinfo = {
     name = "DOD hooks",
@@ -27,12 +29,9 @@ public APLRes AskPluginLoad2(Handle plugin, bool late, char[] error, int errorMa
 public void OnPluginStart() {
     Forward_GameRules_OnSetWinningTeam_Create();
     GameData_Load();
+    Watcher_ResetDetourStatus();
 }
 
 public void OnMapStart() {
-    Detour_GameRules_SetWinningTeam_Enable();
-}
-
-public void OnMapEnd() {
-    Detour_GameRules_SetWinningTeam_Disable();
+    Watcher_UpdateDetourStatus();
 }

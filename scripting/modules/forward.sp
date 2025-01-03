@@ -2,6 +2,8 @@ static GlobalForward g_onSetWinningTeam;
 
 void Forward_GameRules_OnSetWinningTeam_Create() {
     g_onSetWinningTeam = new GlobalForward("GameRules_OnSetWinningTeam", ET_Hook, Param_CellByRef);
+
+    Watcher_SetForward(Index_GameRules_SetWinningTeam, g_onSetWinningTeam);
 }
 
 Action Forward_GameRules_OnSetWinningTeam(int& team) {

@@ -17,10 +17,15 @@ Allows you to use natives and detours functions
 
 ### API
 
-Called when setting the winning `team`
+Default behavior of the forwards:
 
-Use `Plugin_Continue` for normal execution and `Plugin_Stop` to stop execution
+* `Plugin_Continue` - Continue the execution
+* `Plugin_Changed` - The parameters have been changed
+* `Plugin_Handled` - The same as `Plugin_Continue`
+* `Plugin_Stop` - Stop the execution
+
+Called before setting the winning `team`
 
 ```sourcepawn
-forward Action DodHooks_OnSetWinningTeam(int team);
+forward Action DodHooks_OnSetWinningTeam(int& team);
 ```

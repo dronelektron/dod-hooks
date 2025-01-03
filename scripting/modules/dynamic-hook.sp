@@ -31,8 +31,9 @@ static MRESReturn OnSetWinningTeam(DHookParam params) {
             return MRES_ChangedHandled;
         }
 
-        case Plugin_Handled: return MRES_Handled;
-        case Plugin_Stop: return MRES_Supercede;
+        case Plugin_Stop: {
+            return MRES_Supercede;
+        }
     }
 
     return MRES_Ignored;

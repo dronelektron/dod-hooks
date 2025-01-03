@@ -4,7 +4,7 @@
 #include "dod-hooks/api/native"
 #include "dod-hooks/game-data"
 
-#include "modules/dynamic-hook.sp"
+#include "modules/detour.sp"
 #include "modules/forward.sp"
 #include "modules/game-data.sp"
 #include "modules/native.sp"
@@ -30,9 +30,9 @@ public void OnPluginStart() {
 }
 
 public void OnMapStart() {
-    DynamicHook_EnableSetWinningTeam();
+    Detour_EnableSetWinningTeam();
 }
 
 public void OnMapEnd() {
-    DynamicHook_DisableSetWinningTeam();
+    Detour_DisableSetWinningTeam();
 }

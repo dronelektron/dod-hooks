@@ -1,6 +1,6 @@
 static DynamicDetour g_setWinningTeam;
 
-void DynamicHook_Create(GameData gameData) {
+void Detour_Create(GameData gameData) {
     g_setWinningTeam = CreateSetWinningTeam(gameData);
 }
 
@@ -13,11 +13,11 @@ static DynamicDetour CreateSetWinningTeam(GameData gameData) {
     return setup;
 }
 
-void DynamicHook_EnableSetWinningTeam() {
+void Detour_EnableSetWinningTeam() {
     g_setWinningTeam.Enable(Hook_Pre, OnSetWinningTeam);
 }
 
-void DynamicHook_DisableSetWinningTeam() {
+void Detour_DisableSetWinningTeam() {
     g_setWinningTeam.Disable(Hook_Pre, OnSetWinningTeam);
 }
 

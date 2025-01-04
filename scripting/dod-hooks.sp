@@ -24,6 +24,7 @@ public Plugin myinfo = {
 
 public APLRes AskPluginLoad2(Handle plugin, bool late, char[] error, int errorMax) {
     Native_GameRules_SetWinningTeam_Create();
+    Native_Player_Respawn_Create();
 
     return APLRes_Success;
 }

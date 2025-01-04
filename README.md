@@ -35,3 +35,11 @@ Set the winning `team`
 ```sourcepawn
 native void GameRules_SetWinningTeam(int team);
 ```
+
+Respawn the dead `client` or alive if `forceRespawn` is set to `true`
+
+> Returns `true` on success and `false` otherwise
+
+```sourcepawn
+native bool Player_Respawn(int client, bool forceRespawn = true);
+```

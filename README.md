@@ -30,6 +30,12 @@ Called before setting the winning `team`
 forward Action GameRules_OnSetWinningTeam(int& team);
 ```
 
+Called before the `client` respawn
+
+```sourcepawn
+forward Action Player_OnRespawn(int client);
+```
+
 Set the winning `team`
 
 ```sourcepawn

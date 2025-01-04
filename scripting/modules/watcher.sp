@@ -5,7 +5,7 @@ static DHookCallback g_callbacks[WATCHERS_SIZE];
 static bool g_enabled[WATCHERS_SIZE];
 
 void Watcher_ResetDetourStatus() {
-    for (int i = Index_GameRules_SetWinningTeam; i <= Index_GameRules_SetWinningTeam; i++) {
+    for (int i = WATCHERS_INDEX_FIRST; i <= WATCHERS_INDEX_LAST; i++) {
         g_enabled[i] = false;
     }
 }
@@ -20,7 +20,7 @@ void Watcher_SetDetour(int index, DynamicDetour detour, DHookCallback callback) 
 }
 
 void Watcher_UpdateDetourStatus() {
-    for (int i = Index_GameRules_SetWinningTeam; i <= Index_GameRules_SetWinningTeam; i++) {
+    for (int i = WATCHERS_INDEX_FIRST; i <= WATCHERS_INDEX_LAST; i++) {
         UpdateDetourStatus(i);
     }
 }

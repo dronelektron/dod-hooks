@@ -30,6 +30,7 @@ public APLRes AskPluginLoad2(Handle plugin, bool late, char[] error, int errorMa
 
 public void OnPluginStart() {
     Forward_GameRules_OnSetWinningTeam_Create();
+    Forward_Player_OnRespawn_Create();
     GameData_Load();
     Watcher_ResetDetourStatus();
 }

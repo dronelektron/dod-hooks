@@ -24,3 +24,21 @@ static MRESReturn SetWinningTeam(DHookParam params) {
 
     return MRES_Ignored;
 }
+
+void Detour_Player_Respawn_Create(GameData gameData) {
+    DynamicDetour detour = DHookCreateDetour(Address_Null, CallConv_THISCALL, ReturnType_Void, ThisPointer_CBaseEntity);
+
+    detour.SetFromConf(gameData, SDKConf_Signature, PLAYER_RESPAWN);
+
+    Watcher_SetDetour(Index_Player_Respawn, detour, Respawn);
+}
+
+static MRESReturn Respawn(int client) {
+    switch (Forward_Player_OnRespawn(client)) {
+        case Plugin_Stop: {
+            return MRES_Supercede;
+        }
+    }
+
+    return MRES_Ignored;
+}

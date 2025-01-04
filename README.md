@@ -1,6 +1,6 @@
 # DOD Hooks
 
-Allows you to use natives and detours functions
+Allows you to use native and detour functions
 
 ### Supported Games
 

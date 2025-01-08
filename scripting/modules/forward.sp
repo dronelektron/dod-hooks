@@ -1,5 +1,6 @@
 static GlobalForward g_onSetWinningTeam;
 static GlobalForward g_onRespawn;
+static GlobalForward g_onJoinTeam;
 
 void Forward_GameRules_OnSetWinningTeam_Create() {
     g_onSetWinningTeam = new GlobalForward("GameRules_OnSetWinningTeam", ET_Hook, Param_CellByRef);
@@ -28,6 +29,23 @@ Action Forward_Player_OnRespawn(int client) {
 
     Call_StartForward(g_onRespawn);
     Call_PushCell(client);
+    Call_Finish(result);
+
+    return result;
+}
+
+void Forward_Player_OnJoinTeam_Create() {
+    g_onJoinTeam = new GlobalForward("Player_OnJoinTeam", ET_Hook, Param_Cell, Param_CellByRef);
+
+    Watcher_SetForward(Index_Player_JoinTeam, g_onJoinTeam);
+}
+
+Action Forward_Player_OnJoinTeam(int client, int& team) {
+    Action result = Plugin_Continue;
+
+    Call_StartForward(g_onJoinTeam);
+    Call_PushCell(client);
+    Call_PushCellRef(team);
     Call_Finish(result);
 
     return result;

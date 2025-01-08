@@ -10,6 +10,8 @@ forward Action GameRules_OnSetWinningTeam(int& team);
 
 forward Action Player_OnRespawn(int client);
 
+forward Action Player_OnJoinTeam(int client, int& team);
+
 native void GameRules_SetWinningTeam(int team);
 
 native bool Player_Respawn(int client, bool forceRespawn = true);

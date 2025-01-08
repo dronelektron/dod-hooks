@@ -36,6 +36,12 @@ Called before the `client` respawn
 forward Action Player_OnRespawn(int client);
 ```
 
+Called before the `client` joins the `team`
+
+```sourcepawn
+forward Action Player_OnJoinTeam(int client, int& team);
+```
+
 Set the winning `team`
 
 ```sourcepawn

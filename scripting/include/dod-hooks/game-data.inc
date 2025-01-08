@@ -7,3 +7,4 @@
 
 #define GAME_RULES_SET_WINNING_TEAM "CDODGameRules::SetWinningTeam"
 #define PLAYER_RESPAWN "CDODPlayer::DODRespawn"
+#define PLAYER_JOIN_TEAM "CDODPlayer::HandleCommand_JoinTeam"

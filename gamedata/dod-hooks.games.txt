@@ -24,6 +24,13 @@
                 "windows"   "\x55\x8B\xEC\x83\xEC\x08\x53\x8B\x1D"
                 "linux"     "@_ZN10CDODPlayer22HandleCommand_JoinTeamEi"
             }
+
+            "CDODPlayer::HandleCommand_JoinClass"
+            {
+                "library"   "server"
+                "windows"   "\x55\x8B\xEC\x57\x8B\xF9\xE8\x45"
+                "linux"     "@_ZN10CDODPlayer23HandleCommand_JoinClassEi"
+            }
         }
     }
 }

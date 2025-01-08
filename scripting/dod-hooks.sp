@@ -34,6 +34,7 @@ public void OnPluginStart() {
     Forward_GameRules_OnSetWinningTeam_Create();
     Forward_Player_OnRespawn_Create();
     Forward_Player_OnJoinTeam_Create();
+    Forward_Player_OnJoinClass_Create();
     GameData_Load();
     Watcher_ResetDetourStatus();
 }

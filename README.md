@@ -42,6 +42,12 @@ Called before the `client` joins the `team`
 forward Action Player_OnJoinTeam(int client, int& team);
 ```
 
+Called before the `client` joins the `class`
+
+```sourcepawn
+forward Action Player_OnJoinClass(int client, int& class);
+```
+
 Set the winning `team`
 
 ```sourcepawn

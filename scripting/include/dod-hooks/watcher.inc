@@ -6,9 +6,10 @@
 enum {
     Index_GameRules_SetWinningTeam,
     Index_Player_Respawn,
-    Index_Player_JoinTeam
+    Index_Player_JoinTeam,
+    Index_Player_JoinClass
 };
 
 #define WATCHERS_INDEX_FIRST Index_GameRules_SetWinningTeam
-#define WATCHERS_INDEX_LAST Index_Player_JoinTeam
+#define WATCHERS_INDEX_LAST Index_Player_JoinClass
 #define WATCHERS_SIZE (WATCHERS_INDEX_LAST + 1)

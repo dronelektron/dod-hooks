@@ -71,3 +71,32 @@ static MRESReturn JoinTeam(int client, DHookReturn results, DHookParam params) {
 
     return MRES_Ignored;
 }
+
+void Detour_Player_JoinClass_Create(GameData gameData) {
+    DynamicDetour detour = DHookCreateDetour(Address_Null, CallConv_THISCALL, ReturnType_Bool, ThisPointer_CBaseEntity);
+
+    detour.SetFromConf(gameData, SDKConf_Signature, PLAYER_JOIN_CLASS);
+    detour.AddParam(HookParamType_Int); // class
+
+    Watcher_SetDetour(Index_Player_JoinClass, detour, JoinClass);
+}
+
+static MRESReturn JoinClass(int client, DHookReturn results, DHookParam params) {
+    int class = DHookGetParam(params, 1);
+
+    switch (Forward_Player_OnJoinClass(client, class)) {
+        case Plugin_Changed: {
+            DHookSetParam(params, 1, class);
+
+            return MRES_ChangedHandled;
+        }
+
+        case Plugin_Stop: {
+            DHookSetReturn(results, HANDLED_YES);
+
+            return MRES_Supercede;
+        }
+    }
+
+    return MRES_Ignored;
+}

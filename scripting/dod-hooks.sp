@@ -1,9 +1,9 @@
 #include <sourcemod>
 #include <dhooks>
 
-#include "dod-hooks/api/native"
 #include "dod-hooks/detour"
 #include "dod-hooks/game-data"
+#include "dod-hooks/native"
 #include "dod-hooks/use-case"
 #include "dod-hooks/watcher"
 

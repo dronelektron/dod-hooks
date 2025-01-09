@@ -31,6 +31,13 @@
                 "windows"   "\x55\x8B\xEC\x57\x8B\xF9\xE8\x45"
                 "linux"     "@_ZN10CDODPlayer23HandleCommand_JoinClassEi"
             }
+
+            "CDODPlayer::VoiceCommand"
+            {
+                "library"   "server"
+                "windows"   "\x55\x8B\xEC\x81\xEC\xB0\x00\x00\x00\x57"
+                "linux"     "@_ZN10CDODPlayer12VoiceCommandEi"
+            }
         }
     }
 }

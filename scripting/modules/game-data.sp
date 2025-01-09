@@ -9,6 +9,7 @@ void GameData_Load() {
     Detour_Player_Respawn_Create(gameData);
     Detour_Player_JoinTeam_Create(gameData);
     Detour_Player_JoinClass_Create(gameData);
+    Detour_Player_VoiceCommand_Create(gameData);
     SdkCall_GameRules_SetWinningTeam_Create(gameData);
     SdkCall_Player_Respawn_Create(gameData);
     CloseHandle(gameData);

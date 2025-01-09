@@ -35,6 +35,7 @@ public void OnPluginStart() {
     Forward_Player_OnRespawn_Create();
     Forward_Player_OnJoinTeam_Create();
     Forward_Player_OnJoinClass_Create();
+    Forward_Player_OnVoiceCommand_Create();
     GameData_Load();
     Watcher_ResetDetourStatus();
 }

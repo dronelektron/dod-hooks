@@ -9,3 +9,4 @@
 #define PLAYER_RESPAWN "CDODPlayer::DODRespawn"
 #define PLAYER_JOIN_TEAM "CDODPlayer::HandleCommand_JoinTeam"
 #define PLAYER_JOIN_CLASS "CDODPlayer::HandleCommand_JoinClass"
+#define PLAYER_VOICE_COMMAND "CDODPlayer::VoiceCommand"

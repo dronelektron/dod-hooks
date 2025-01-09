@@ -2,6 +2,7 @@ static GlobalForward g_onSetWinningTeam;
 static GlobalForward g_onRespawn;
 static GlobalForward g_onJoinTeam;
 static GlobalForward g_onJoinClass;
+static GlobalForward g_onVoiceCommand;
 
 void Forward_GameRules_OnSetWinningTeam_Create() {
     g_onSetWinningTeam = new GlobalForward("GameRules_OnSetWinningTeam", ET_Hook, Param_CellByRef);
@@ -64,6 +65,23 @@ Action Forward_Player_OnJoinClass(int client, int& class) {
     Call_StartForward(g_onJoinClass);
     Call_PushCell(client);
     Call_PushCellRef(class);
+    Call_Finish(result);
+
+    return result;
+}
+
+void Forward_Player_OnVoiceCommand_Create() {
+    g_onVoiceCommand = new GlobalForward("Player_OnVoiceCommand", ET_Hook, Param_Cell, Param_CellByRef);
+
+    Watcher_SetForward(Index_Player_VoiceCommand, g_onVoiceCommand);
+}
+
+Action Forward_Player_OnVoiceCommand(int client, int& voiceCommand) {
+    Action result = Plugin_Continue;
+
+    Call_StartForward(g_onVoiceCommand);
+    Call_PushCell(client);
+    Call_PushCellRef(voiceCommand);
     Call_Finish(result);
 
     return result;

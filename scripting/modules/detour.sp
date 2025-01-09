@@ -100,3 +100,30 @@ static MRESReturn JoinClass(int client, DHookReturn results, DHookParam params) 
 
     return MRES_Ignored;
 }
+
+void Detour_Player_VoiceCommand_Create(GameData gameData) {
+    DynamicDetour detour = DHookCreateDetour(Address_Null, CallConv_THISCALL, ReturnType_Void, ThisPointer_CBaseEntity);
+
+    detour.SetFromConf(gameData, SDKConf_Signature, PLAYER_VOICE_COMMAND);
+    detour.AddParam(HookParamType_Int); // voiceCommand
+
+    Watcher_SetDetour(Index_Player_VoiceCommand, detour, VoiceCommand);
+}
+
+static MRESReturn VoiceCommand(int client, DHookParam params) {
+    int voiceCommand = DHookGetParam(params, 1);
+
+    switch (Forward_Player_OnVoiceCommand(client, voiceCommand)) {
+        case Plugin_Changed: {
+            DHookSetParam(params, 1, voiceCommand);
+
+            return MRES_ChangedHandled;
+        }
+
+        case Plugin_Stop: {
+            return MRES_Supercede;
+        }
+    }
+
+    return MRES_Ignored;
+}

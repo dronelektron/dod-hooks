@@ -61,3 +61,9 @@ Respawn the dead `client` or alive if `forceRespawn` is set to `true`
 ```sourcepawn
 native bool Player_Respawn(int client, bool forceRespawn = true);
 ```
+
+Force the `client` to join the `class`
+
+```sourcepawn
+native void Player_JoinClass(int client, int class);
+```

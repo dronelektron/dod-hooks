@@ -1,9 +1,11 @@
 static Handle g_setWinningTeam;
 static Handle g_respawn;
+static Handle g_joinClass;
 
 void SdkCall_Create(GameData gameData) {
     GameRules_SetWinningTeam_Create(gameData);
     Player_Respawn_Create(gameData);
+    Player_JoinClass_Create(gameData);
 }
 
 static void GameRules_SetWinningTeam_Create(GameData gameData) {
@@ -27,4 +29,16 @@ static void Player_Respawn_Create(GameData gameData) {
 
 void SdkCall_Player_Respawn(int client) {
     SDKCall(g_respawn, client);
+}
+
+static void Player_JoinClass_Create(GameData gameData) {
+    StartPrepSDKCall(SDKCall_Entity);
+    PrepSDKCall_SetFromConf(gameData, SDKConf_Signature, PLAYER_JOIN_CLASS);
+    PrepSDKCall_AddParameter(SDKType_PlainOldData, SDKPass_Plain); // class
+
+    g_joinClass = EndPrepSDKCall();
+}
+
+void SdkCall_Player_JoinClass(int client, int class) {
+    SDKCall(g_joinClass, client, class);
 }

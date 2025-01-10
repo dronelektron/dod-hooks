@@ -1,5 +1,6 @@
-void Native_GameRules_SetWinningTeam_Create() {
+void Native_Create() {
     CreateNative("GameRules_SetWinningTeam", SetWinningTeam);
+    CreateNative("Player_Respawn", Respawn);
 }
 
 static any SetWinningTeam(Handle plugin, int numParams) {
@@ -8,10 +9,6 @@ static any SetWinningTeam(Handle plugin, int numParams) {
     SdkCall_GameRules_SetWinningTeam(team);
 
     return VOID;
-}
-
-void Native_Player_Respawn_Create() {
-    CreateNative("Player_Respawn", Respawn);
 }
 
 static any Respawn(Handle plugin, int numParams) {

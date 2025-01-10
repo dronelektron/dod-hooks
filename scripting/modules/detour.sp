@@ -1,4 +1,12 @@
-void Detour_GameRules_SetWinningTeam_Create(GameData gameData) {
+void Detour_Create(GameData gameData) {
+    GameRules_SetWinningTeam_Create(gameData);
+    Player_Respawn_Create(gameData);
+    Player_JoinTeam_Create(gameData);
+    Player_JoinClass_Create(gameData);
+    Player_VoiceCommand_Create(gameData);
+}
+
+static void GameRules_SetWinningTeam_Create(GameData gameData) {
     DynamicDetour detour = DHookCreateDetour(Address_Null, CallConv_THISCALL, ReturnType_Void, ThisPointer_Ignore);
 
     detour.SetFromConf(gameData, SDKConf_Signature, GAME_RULES_SET_WINNING_TEAM);
@@ -25,7 +33,7 @@ static MRESReturn SetWinningTeam(DHookParam params) {
     return MRES_Ignored;
 }
 
-void Detour_Player_Respawn_Create(GameData gameData) {
+static void Player_Respawn_Create(GameData gameData) {
     DynamicDetour detour = DHookCreateDetour(Address_Null, CallConv_THISCALL, ReturnType_Void, ThisPointer_CBaseEntity);
 
     detour.SetFromConf(gameData, SDKConf_Signature, PLAYER_RESPAWN);
@@ -43,7 +51,7 @@ static MRESReturn Respawn(int client) {
     return MRES_Ignored;
 }
 
-void Detour_Player_JoinTeam_Create(GameData gameData) {
+static void Player_JoinTeam_Create(GameData gameData) {
     DynamicDetour detour = DHookCreateDetour(Address_Null, CallConv_THISCALL, ReturnType_Bool, ThisPointer_CBaseEntity);
 
     detour.SetFromConf(gameData, SDKConf_Signature, PLAYER_JOIN_TEAM);
@@ -72,7 +80,7 @@ static MRESReturn JoinTeam(int client, DHookReturn results, DHookParam params) {
     return MRES_Ignored;
 }
 
-void Detour_Player_JoinClass_Create(GameData gameData) {
+static void Player_JoinClass_Create(GameData gameData) {
     DynamicDetour detour = DHookCreateDetour(Address_Null, CallConv_THISCALL, ReturnType_Bool, ThisPointer_CBaseEntity);
 
     detour.SetFromConf(gameData, SDKConf_Signature, PLAYER_JOIN_CLASS);
@@ -101,7 +109,7 @@ static MRESReturn JoinClass(int client, DHookReturn results, DHookParam params) 
     return MRES_Ignored;
 }
 
-void Detour_Player_VoiceCommand_Create(GameData gameData) {
+static void Player_VoiceCommand_Create(GameData gameData) {
     DynamicDetour detour = DHookCreateDetour(Address_Null, CallConv_THISCALL, ReturnType_Void, ThisPointer_CBaseEntity);
 
     detour.SetFromConf(gameData, SDKConf_Signature, PLAYER_VOICE_COMMAND);

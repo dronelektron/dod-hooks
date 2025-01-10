@@ -1,7 +1,12 @@
 static Handle g_setWinningTeam;
 static Handle g_respawn;
 
-void SdkCall_GameRules_SetWinningTeam_Create(GameData gameData) {
+void SdkCall_Create(GameData gameData) {
+    GameRules_SetWinningTeam_Create(gameData);
+    Player_Respawn_Create(gameData);
+}
+
+static void GameRules_SetWinningTeam_Create(GameData gameData) {
     StartPrepSDKCall(SDKCall_GameRules);
     PrepSDKCall_SetFromConf(gameData, SDKConf_Signature, GAME_RULES_SET_WINNING_TEAM);
     PrepSDKCall_AddParameter(SDKType_PlainOldData, SDKPass_Plain); // team
@@ -13,7 +18,7 @@ void SdkCall_GameRules_SetWinningTeam(int team) {
     SDKCall(g_setWinningTeam, team);
 }
 
-void SdkCall_Player_Respawn_Create(GameData gameData) {
+static void Player_Respawn_Create(GameData gameData) {
     StartPrepSDKCall(SDKCall_Entity);
     PrepSDKCall_SetFromConf(gameData, SDKConf_Signature, PLAYER_RESPAWN);
 

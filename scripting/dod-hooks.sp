@@ -24,18 +24,13 @@ public Plugin myinfo = {
 };
 
 public APLRes AskPluginLoad2(Handle plugin, bool late, char[] error, int errorMax) {
-    Native_GameRules_SetWinningTeam_Create();
-    Native_Player_Respawn_Create();
+    Native_Create();
 
     return APLRes_Success;
 }
 
 public void OnPluginStart() {
-    Forward_GameRules_OnSetWinningTeam_Create();
-    Forward_Player_OnRespawn_Create();
-    Forward_Player_OnJoinTeam_Create();
-    Forward_Player_OnJoinClass_Create();
-    Forward_Player_OnVoiceCommand_Create();
+    Forward_Create();
     GameData_Load();
     Watcher_ResetDetourStatus();
 }

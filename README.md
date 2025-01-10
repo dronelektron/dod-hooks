@@ -67,3 +67,9 @@ Force the `client` to join the `class`
 ```sourcepawn
 native void Player_JoinClass(int client, int class);
 ```
+
+Force the `client` to use the `voiceCommand`
+
+```sourcepawn
+native void Player_VoiceCommand(int client, int voiceCommand);
+```

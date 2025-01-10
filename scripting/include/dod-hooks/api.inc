@@ -63,3 +63,5 @@ native void GameRules_SetWinningTeam(int team);
 native bool Player_Respawn(int client, bool forceRespawn = true);
 
 native void Player_JoinClass(int client, int class);
+
+native void Player_VoiceCommand(int client, int voiceCommand);

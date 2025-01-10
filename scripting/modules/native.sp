@@ -2,6 +2,7 @@ void Native_Create() {
     CreateNative("GameRules_SetWinningTeam", SetWinningTeam);
     CreateNative("Player_Respawn", Respawn);
     CreateNative("Player_JoinClass", JoinClass);
+    CreateNative("Player_VoiceCommand", VoiceCommand);
 }
 
 static any SetWinningTeam(Handle plugin, int numParams) {
@@ -24,6 +25,15 @@ static any JoinClass(Handle plugin, int numParams) {
     int class = GetNativeCell(2);
 
     SdkCall_Player_JoinClass(client, class);
+
+    return VOID;
+}
+
+static any VoiceCommand(Handle plugin, int numParams) {
+    int client = GetNativeCell(1);
+    int voiceCommand = GetNativeCell(2);
+
+    SdkCall_Player_VoiceCommand(client, voiceCommand);
 
     return VOID;
 }

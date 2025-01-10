@@ -40,7 +40,7 @@ enum {
     Voice_WTF,
     Voice_FireLeft,
     Voice_FireRight,
-    // "Voice_MgAhead" already exists
+    // Voice_MgAhead is already exists
     Voice_EnemyAhead = 37,
     Voice_FallBack
 };

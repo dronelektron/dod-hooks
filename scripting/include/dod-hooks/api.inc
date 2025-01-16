@@ -4,6 +4,24 @@
 #define _dod_hooks_api_included
 
 enum {
+    Team_Unassigned,
+    Team_Spectators,
+    Team_Allies,
+    Team_Axis
+};
+
+enum {
+    Class_Random = -2,
+    Class_Undefined,
+    Class_Rifleman,
+    Class_Assault,
+    Class_Support,
+    Class_Sniper,
+    Class_MachineGunner,
+    Class_Rocket
+};
+
+enum {
     Voice_Attack,
     Voice_Hold,
     Voice_Left,

@@ -11,6 +11,13 @@
                 "linux"     "@_ZN13CDODGameRules14SetWinningTeamEi"
             }
 
+            "CDODGameRules::TeamFull"
+            {
+                "library"   "server"
+                "windows"   "\x55\x8B\xEC\x8B\x45\x08\x56\x8B\xF1\x83\xE8\x02"
+                "linux"     "@_ZN13CDODGameRules8TeamFullEi"
+            }
+
             "CDODPlayer::DODRespawn"
             {
                 "library"   "server"

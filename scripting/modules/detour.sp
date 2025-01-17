@@ -1,5 +1,6 @@
 void Detour_Create(GameData gameData) {
     GameRules_SetWinningTeam_Create(gameData);
+    GameRules_TeamFull_Create(gameData);
     Player_Respawn_Create(gameData);
     Player_JoinTeam_Create(gameData);
     Player_JoinClass_Create(gameData);
@@ -26,6 +27,30 @@ static MRESReturn SetWinningTeam(DHookParam params) {
         }
 
         case Plugin_Stop: {
+            return MRES_Supercede;
+        }
+    }
+
+    return MRES_Ignored;
+}
+
+static void GameRules_TeamFull_Create(GameData gameData) {
+    DynamicDetour detour = DHookCreateDetour(Address_Null, CallConv_THISCALL, ReturnType_Bool, ThisPointer_Ignore);
+
+    detour.SetFromConf(gameData, SDKConf_Signature, GAME_RULES_TEAM_FULL);
+    detour.AddParam(HookParamType_Int); // team
+
+    Watcher_SetDetour(Index_GameRules_TeamFull, detour, TeamFull);
+}
+
+static MRESReturn TeamFull(DHookReturn results, DHookParam params) {
+    int team = DHookGetParam(params, 1);
+    bool full;
+
+    switch (Forward_GameRules_OnTeamFull(team, full)) {
+        case Plugin_Stop: {
+            DHookSetReturn(results, full);
+
             return MRES_Supercede;
         }
     }

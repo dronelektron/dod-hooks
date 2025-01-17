@@ -68,6 +68,8 @@ enum {
 
 forward Action GameRules_OnSetWinningTeam(int& team);
 
+forward Action GameRules_OnTeamFull(int team, bool& full = false);
+
 forward Action Player_OnRespawn(int client);
 
 forward Action Player_OnJoinTeam(int client, int& team);

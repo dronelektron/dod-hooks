@@ -1,6 +1,7 @@
 void Detour_Create(GameData gameData) {
     GameRules_SetWinningTeam_Create(gameData);
     GameRules_TeamFull_Create(gameData);
+    GameRules_TeamStacked_Create(gameData);
     Player_Respawn_Create(gameData);
     Player_JoinTeam_Create(gameData);
     Player_JoinClass_Create(gameData);
@@ -45,11 +46,37 @@ static void GameRules_TeamFull_Create(GameData gameData) {
 
 static MRESReturn TeamFull(DHookReturn results, DHookParam params) {
     int team = DHookGetParam(params, 1);
-    bool full;
+    bool full = false;
 
     switch (Forward_GameRules_OnTeamFull(team, full)) {
         case Plugin_Stop: {
             DHookSetReturn(results, full);
+
+            return MRES_Supercede;
+        }
+    }
+
+    return MRES_Ignored;
+}
+
+static void GameRules_TeamStacked_Create(GameData gameData) {
+    DynamicDetour detour = DHookCreateDetour(Address_Null, CallConv_THISCALL, ReturnType_Bool, ThisPointer_Ignore);
+
+    detour.SetFromConf(gameData, SDKConf_Signature, GAME_RULES_TEAM_STACKED);
+    detour.AddParam(HookParamType_Int); // newTeam
+    detour.AddParam(HookParamType_Int); // currentTeam
+
+    Watcher_SetDetour(Index_GameRules_TeamStacked, detour, TeamStacked);
+}
+
+static MRESReturn TeamStacked(DHookReturn results, DHookParam params) {
+    int newTeam = DHookGetParam(params, 1);
+    int currentTeam = DHookGetParam(params, 2);
+    bool stacked = false;
+
+    switch (Forward_GameRules_OnTeamStacked(newTeam, currentTeam, stacked)) {
+        case Plugin_Stop: {
+            DHookSetReturn(results, stacked);
 
             return MRES_Supercede;
         }

@@ -35,7 +35,15 @@ Called when the `team` is checked that it is full
 > Returns the `full` value
 
 ```sourcepawn
-forward Action GameRules_OnTeamFull(int team, bool& full = false);
+forward Action GameRules_OnTeamFull(int team, bool& full);
+```
+
+Called when the `newTeam` is checked that it is stacked
+
+> Returns the `stacked` value
+
+```sourcepawn
+forward Action GameRules_OnTeamStacked(int newTeam, int currentTeam, bool& stacked);
 ```
 
 Called before the `client` respawn

@@ -1,4 +1,4 @@
-# DOD Hooks
+# DOD hooks
 
 Allows you to use native and detour functions
 
@@ -62,6 +62,12 @@ Called before the `client` joins the `class`
 
 ```sourcepawn
 forward Action Player_OnJoinClass(int client, int& class);
+```
+
+Called before the `client` uses the `voiceCommand`
+
+```sourcepawn
+forward Action Player_OnVoiceCommand(int client, int& voiceCommand);
 ```
 
 Set the winning `team`

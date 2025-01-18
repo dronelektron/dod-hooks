@@ -5,6 +5,8 @@
 
 enum {
     Index_GameRules_SetWinningTeam,
+    Index_GameRules_TeamFull,
+    Index_GameRules_TeamStacked,
     Index_Player_Respawn,
     Index_Player_JoinTeam,
     Index_Player_JoinClass,

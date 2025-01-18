@@ -18,11 +18,11 @@ static void GameRules_SetWinningTeam_Create(GameData gameData) {
 }
 
 static MRESReturn SetWinningTeam(DHookParam params) {
-    int team = DHookGetParam(params, 1);
+    int team = params.Get(1);
 
     switch (Forward_GameRules_OnSetWinningTeam(team)) {
         case Plugin_Changed: {
-            DHookSetParam(params, 1, team);
+            params.Set(1, team);
 
             return MRES_ChangedHandled;
         }
@@ -45,12 +45,12 @@ static void GameRules_TeamFull_Create(GameData gameData) {
 }
 
 static MRESReturn TeamFull(DHookReturn results, DHookParam params) {
-    int team = DHookGetParam(params, 1);
+    int team = params.Get(1);
     bool full = false;
 
     switch (Forward_GameRules_OnTeamFull(team, full)) {
         case Plugin_Stop: {
-            DHookSetReturn(results, full);
+            results.Value = full;
 
             return MRES_Supercede;
         }
@@ -70,13 +70,13 @@ static void GameRules_TeamStacked_Create(GameData gameData) {
 }
 
 static MRESReturn TeamStacked(DHookReturn results, DHookParam params) {
-    int newTeam = DHookGetParam(params, 1);
-    int currentTeam = DHookGetParam(params, 2);
+    int newTeam = params.Get(1);
+    int currentTeam = params.Get(2);
     bool stacked = false;
 
     switch (Forward_GameRules_OnTeamStacked(newTeam, currentTeam, stacked)) {
         case Plugin_Stop: {
-            DHookSetReturn(results, stacked);
+            results.Value = stacked;
 
             return MRES_Supercede;
         }
@@ -113,17 +113,17 @@ static void Player_JoinTeam_Create(GameData gameData) {
 }
 
 static MRESReturn JoinTeam(int client, DHookReturn results, DHookParam params) {
-    int team = DHookGetParam(params, 1);
+    int team = params.Get(1);
 
     switch (Forward_Player_OnJoinTeam(client, team)) {
         case Plugin_Changed: {
-            DHookSetParam(params, 1, team);
+            params.Set(1, team);
 
             return MRES_ChangedHandled;
         }
 
         case Plugin_Stop: {
-            DHookSetReturn(results, HANDLED_YES);
+            results.Value = HANDLED_YES;
 
             return MRES_Supercede;
         }
@@ -142,17 +142,17 @@ static void Player_JoinClass_Create(GameData gameData) {
 }
 
 static MRESReturn JoinClass(int client, DHookReturn results, DHookParam params) {
-    int class = DHookGetParam(params, 1);
+    int class = params.Get(1);
 
     switch (Forward_Player_OnJoinClass(client, class)) {
         case Plugin_Changed: {
-            DHookSetParam(params, 1, class);
+            params.Set(1, class);
 
             return MRES_ChangedHandled;
         }
 
         case Plugin_Stop: {
-            DHookSetReturn(results, HANDLED_YES);
+            results.Value = HANDLED_YES;
 
             return MRES_Supercede;
         }
@@ -171,11 +171,11 @@ static void Player_VoiceCommand_Create(GameData gameData) {
 }
 
 static MRESReturn VoiceCommand(int client, DHookParam params) {
-    int voiceCommand = DHookGetParam(params, 1);
+    int voiceCommand = params.Get(1);
 
     switch (Forward_Player_OnVoiceCommand(client, voiceCommand)) {
         case Plugin_Changed: {
-            DHookSetParam(params, 1, voiceCommand);
+            params.Set(1, voiceCommand);
 
             return MRES_ChangedHandled;
         }

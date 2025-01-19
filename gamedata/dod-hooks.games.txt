@@ -25,6 +25,13 @@
                 "linux"     "@_ZN13CDODGameRules11TeamStackedEii"
             }
 
+            "CDODGameRules::CanPlayerJoinClass"
+            {
+                "library"   "server"
+                "windows"   "\x55\x8B\xEC\x8B\x45\x0C\x56\x8B\xF1\x83"
+                "linux"     "@_ZN13CDODGameRules18CanPlayerJoinClassEP10CDODPlayeri"
+            }
+
             "CDODPlayer::DODRespawn"
             {
                 "library"   "server"

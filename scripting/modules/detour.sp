@@ -2,6 +2,7 @@ void Detour_Create(GameData gameData) {
     GameRules_SetWinningTeam_Create(gameData);
     GameRules_TeamFull_Create(gameData);
     GameRules_TeamStacked_Create(gameData);
+    GameRules_CanPlayerJoinClass_Create(gameData);
     Player_Respawn_Create(gameData);
     Player_JoinTeam_Create(gameData);
     Player_JoinClass_Create(gameData);
@@ -77,6 +78,32 @@ static MRESReturn TeamStacked(DHookReturn results, DHookParam params) {
     switch (Forward_GameRules_OnTeamStacked(newTeam, currentTeam, stacked)) {
         case Plugin_Stop: {
             results.Value = stacked;
+
+            return MRES_Supercede;
+        }
+    }
+
+    return MRES_Ignored;
+}
+
+static void GameRules_CanPlayerJoinClass_Create(GameData gameData) {
+    DynamicDetour detour = DHookCreateDetour(Address_Null, CallConv_THISCALL, ReturnType_Bool, ThisPointer_Ignore);
+
+    detour.SetFromConf(gameData, SDKConf_Signature, GAME_RULES_CAN_PLAYER_JOIN_CLASS);
+    detour.AddParam(HookParamType_CBaseEntity); // client
+    detour.AddParam(HookParamType_Int); // class
+
+    Watcher_SetDetour(Index_GameRules_CanPlayerJoinClass, detour, CanPlayerJoinClass);
+}
+
+static MRESReturn CanPlayerJoinClass(DHookReturn results, DHookParam params) {
+    int client = params.Get(1);
+    int class = params.Get(2);
+    bool canJoin = false;
+
+    switch (Forward_GameRules_OnCanPlayerJoinClass(client, class, canJoin)) {
+        case Plugin_Stop: {
+            results.Value = canJoin;
 
             return MRES_Supercede;
         }

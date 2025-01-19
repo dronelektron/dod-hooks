@@ -46,6 +46,14 @@ Called when the `newTeam` is checked that it is stacked
 forward Action GameRules_OnTeamStacked(int newTeam, int currentTeam, bool& stacked);
 ```
 
+Called when the `client` is trying to join the `class`
+
+> Returns the `canJoin` value
+
+```sourcepawn
+forward Action GameRules_OnCanPlayerJoinClass(int client, int class, bool& canJoin);
+```
+
 Called before the `client` respawn
 
 ```sourcepawn

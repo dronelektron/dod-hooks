@@ -1,6 +1,7 @@
 static GlobalForward g_onSetWinningTeam;
 static GlobalForward g_onTeamFull;
 static GlobalForward g_onTeamStacked;
+static GlobalForward g_onCanPlayerJoinClass;
 static GlobalForward g_onRespawn;
 static GlobalForward g_onJoinTeam;
 static GlobalForward g_onJoinClass;
@@ -10,6 +11,7 @@ void Forward_Create() {
     GameRules_OnSetWinningTeam_Create();
     GameRules_OnTeamFull_Create();
     GameRules_OnTeamStacked_Create();
+    GameRules_OnCanPlayerJoinClass_Create();
     Player_OnRespawn_Create();
     Player_OnJoinTeam_Create();
     Player_OnJoinClass_Create();
@@ -62,6 +64,24 @@ Action Forward_GameRules_OnTeamStacked(int newTeam, int currentTeam, bool& stack
     Call_PushCell(newTeam);
     Call_PushCell(currentTeam);
     Call_PushCellRef(stacked);
+    Call_Finish(result);
+
+    return result;
+}
+
+static void GameRules_OnCanPlayerJoinClass_Create() {
+    g_onCanPlayerJoinClass = new GlobalForward("GameRules_OnCanPlayerJoinClass", ET_Hook, Param_Cell, Param_Cell, Param_CellByRef);
+
+    Watcher_SetForward(Index_GameRules_CanPlayerJoinClass, g_onCanPlayerJoinClass);
+}
+
+Action Forward_GameRules_OnCanPlayerJoinClass(int client, int class, bool& canJoin) {
+    Action result = Plugin_Continue;
+
+    Call_StartForward(g_onCanPlayerJoinClass);
+    Call_PushCell(client);
+    Call_PushCell(class);
+    Call_PushCellRef(canJoin);
     Call_Finish(result);
 
     return result;

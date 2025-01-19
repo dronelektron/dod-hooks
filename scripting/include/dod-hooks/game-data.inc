@@ -8,6 +8,7 @@
 #define GAME_RULES_SET_WINNING_TEAM "CDODGameRules::SetWinningTeam"
 #define GAME_RULES_TEAM_FULL "CDODGameRules::TeamFull"
 #define GAME_RULES_TEAM_STACKED "CDODGameRules::TeamStacked"
+#define GAME_RULES_CAN_PLAYER_JOIN_CLASS "CDODGameRules::CanPlayerJoinClass"
 
 #define PLAYER_RESPAWN "CDODPlayer::DODRespawn"
 #define PLAYER_JOIN_TEAM "CDODPlayer::HandleCommand_JoinTeam"

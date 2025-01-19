@@ -72,6 +72,8 @@ forward Action GameRules_OnTeamFull(int team, bool& full);
 
 forward Action GameRules_OnTeamStacked(int newTeam, int currentTeam, bool& stacked);
 
+forward Action GameRules_OnCanPlayerJoinClass(int client, int class, bool& canJoin);
+
 forward Action Player_OnRespawn(int client);
 
 forward Action Player_OnJoinTeam(int client, int& team);

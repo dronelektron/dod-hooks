@@ -1,6 +1,6 @@
 bool UseCase_Player_Respawn(int client, bool forceRespawn) {
-    bool noTeam = GetClientTeam(client) < TEAM_ALLIES;
-    bool noClass = GetDesiredPlayerClass(client) == NO_DESIRED_PLAYER_CLASS;
+    bool noTeam = GetClientTeam(client) < Team_Allies;
+    bool noClass = GetDesiredPlayerClass(client) == Class_Undefined;
 
     if (noTeam || noClass) {
         return false;

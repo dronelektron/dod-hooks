@@ -1,10 +1,10 @@
 #include <sourcemod>
 #include <dhooks>
 
+#include "dod-hooks/api"
 #include "dod-hooks/detour"
 #include "dod-hooks/game-data"
 #include "dod-hooks/native"
-#include "dod-hooks/use-case"
 #include "dod-hooks/watcher"
 
 #include "modules/detour.sp"
@@ -19,7 +19,7 @@ public Plugin myinfo = {
     name = "DOD hooks",
     author = "Dron-elektron",
     description = "Allows you to use native and detour functions",
-    version = "0.3.0",
+    version = "0.3.1",
     url = "https://github.com/dronelektron/dod-hooks"
 };
 

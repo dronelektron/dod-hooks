@@ -19,7 +19,7 @@ public Plugin myinfo = {
     name = "DOD hooks",
     author = "Dron-elektron",
     description = "Allows you to use native and detour functions",
-    version = "0.3.0",
+    version = "0.3.1",
     url = "https://github.com/dronelektron/dod-hooks"
 };
 
